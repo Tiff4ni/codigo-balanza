@@ -1,0 +1,19 @@
+# Entorno virtual
+env/
+venv/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Archivos secretos
+*.env
+firebase/serviceAccountKey.json
+
+# Archivos de configuración del sistema
+.DS_Store
+*.log
+
+# Archivos estáticos generados
+staticfiles/
