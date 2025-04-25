@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <meta charset="UTF-8">
+    <title>Menú Principal</title>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-title">BuscaCode</div>
+
+        <a href="{% url 'buscar_producto' %}" class="menu-item">
+            <img src="{% static 'icons/search.png' %}" class="menu-icon" alt="Buscar">
+            Buscar producto
+        </a>
+        <a href="{% url 'agregar_producto' %}" class="menu-item">
+            <img src="{% static 'icons/add.png' %}" class="menu-icon" alt="Agregar">
+            Agregar producto
+        </a>
+        <a href="{% url 'cerrar_sesion' %}" class="menu-item">
+            <img src="{% static 'icons/logout.png' %}" class="menu-icon" alt="Cerrar sesión">
+            Cerrar sesión
+        </a>
+    </div>
+    <main class="contenido">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

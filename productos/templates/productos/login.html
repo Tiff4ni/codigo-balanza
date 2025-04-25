@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-title">Iniciar sesión</div>
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Entrar</button>
+        </form>
+        {% if error %}
+            <div class="login-error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends 'productos/menu.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/formularios.css' %}">
+<h1>Buscar Producto</h1>
+
+<form method="GET">
+    <input type="text" name="query" placeholder="Buscar por nombre o marca" value="{{ query }}">
+    <button type="submit">Buscar</button>
+</form>
+
+{% if resultados %}
+    <h2>Resultados:</h2>
+    <ul>
+        {% for producto in resultados %}
+        <li class="producto-card">
+            <div class="info-producto">
+                <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+                <p><strong>Marca:</strong> {{ producto.marca }}</p>
+                <p><strong>Código SAP:</strong> {{ producto.cod_sap }}</p>
+            </div>
+            <div class="acciones-producto">
+                <p class="codigo-balanza"><strong>Código EAN:</strong> {{ producto.cod_ean }}</p>
+                <a href="{% url 'editar_producto' producto.id %}" class="btn-secundario">Editar</a>
+                <a href="{% url 'eliminar_producto' producto.id %}" class="btn-secundario" onclick="return confirm('¿Estás seguro de eliminar este producto?');">Eliminar</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% elif nombre or marca %}
+    <p>No se encontraron productos.</p>
+{% endif %}
+{% endblock %}

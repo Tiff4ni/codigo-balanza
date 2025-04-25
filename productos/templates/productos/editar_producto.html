@@ -1,0 +1,14 @@
+{% extends 'productos/menu.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/formularios.css' %}">
+<h1>Editar Producto</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Cambios</button>
+</form>
+
+<a href="{% url 'buscar_producto' %}">Volver a búsqueda</a>
+{% endblock %}
