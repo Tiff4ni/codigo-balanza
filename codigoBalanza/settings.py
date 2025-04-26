@@ -13,7 +13,8 @@ SECRET_KEY = 'django-insecure-v77y92$ff3l#kfdd-!$&h&e_bw+_u2ar(+n@8839s78(((lg9&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['codigo-balanza.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
