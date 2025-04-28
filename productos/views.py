@@ -8,12 +8,17 @@ from .forms import LoginForm
 import requests
 from django.contrib import messages
 from .decoradores import login_requerido
+import json
 
-API_KEY = 'AIzaSyArtG2uk0O0gdQ8-FuCh7nuFINQ1MJbJls'
+API_KEY = os.environ.get('FIREBASE_API_KEY')
 
 if not firebase_admin._apps:
-    cred_path = os.path.join(settings.BASE_DIR, 'firebase', 'serviceAccountKey.json')
-    cred = credentials.Certificate(cred_path)
+    firebase_config_json = os.environ.get('FIREBASE_SERVICE_ACCOUNT_KEY')
+    if not firebase_config_json:
+        raise ValueError("FIREBASE_SERVICE_ACCOUNT_KEY no está configurada en Render!")
+    
+    firebase_config = json.loads(firebase_config_json)
+    cred = credentials.Certificate(firebase_config)
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://appproductos-9ead1-default-rtdb.firebaseio.com/'
     })
@@ -26,6 +31,7 @@ def login_view(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
 
+            API_KEY = os.environ.get('FIREBASE_API_KEY')
             url = f"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={API_KEY}"
             payload = {
                 "email": email,

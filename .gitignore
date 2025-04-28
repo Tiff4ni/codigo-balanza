@@ -8,6 +8,7 @@ __pycache__/
 *.sqlite3
 
 # Archivos secretos
+.env
 *.env
 firebase/serviceAccountKey.json
 
@@ -17,3 +18,6 @@ firebase/serviceAccountKey.json
 
 # Archivos estáticos generados
 staticfiles/
+
+*.env.local
+.env.development
