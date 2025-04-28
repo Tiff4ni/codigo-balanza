@@ -3,6 +3,7 @@ from .forms import ProductoForm
 from django.conf import settings
 import firebase_admin
 from firebase_admin import db, credentials
+from firebase_admin import auth
 import os
 from .forms import LoginForm
 import requests
@@ -88,6 +89,14 @@ def buscar_producto(request):
 
     ref = db.reference('Productos')
     productos = ref.get()
+
+    try:
+        ref = db.reference('Productos')
+        productos = ref.get() or {}
+        ...
+    except Exception as e:
+        print(f"Error buscando productos: {e}")
+        productos = {}
 
     if productos and query.strip():
         palabras_query = query.split()
