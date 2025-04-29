@@ -4,13 +4,25 @@
 <head>
     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{% static 'icons/favicon.ico' %}" type="image/x-icon">
-    <title>Código Balanza</title>
+    <title>{% block title %}Código Balanza{% endblock %}</title>
 </head>
 <body>
-    <div class="menu-container">
-        <div class="menu-title">Código Balanza</div>
+    <!-- Header móvil -->
+    <div class="mobile-header">
+        <img 
+            src="{% static 'icons/menu.png' %}" 
+            class="hamburguesa" 
+            alt="Menú"
+            onclick="toggleMenu()"
+        >
+        <span id="mobile-page-title" class="mobile-page-title">Código Balanza</span>
+    </div>
 
+    <!-- Menú lateral -->
+    <div class="menu-container" id="menuContainer">
+        <div class="menu-title">Código Balanza</div>
         <a href="{% url 'buscar_producto' %}" class="menu-item">
             <img src="{% static 'icons/search.png' %}" class="menu-icon" alt="Buscar">
             Buscar producto
@@ -24,8 +36,32 @@
             Cerrar sesión
         </a>
     </div>
+
     <main class="contenido">
         {% block content %}{% endblock %}
     </main>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menuContainer');
+            menu.classList.toggle('menu-visible');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const pageTitle = document.getElementById('mobile-page-title');
+            if (pageTitle) {
+                pageTitle.textContent = document.title;
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('menuContainer');
+            const hamburguesa = document.querySelector('.hamburguesa');
+            
+            if (!menu.contains(e.target) && !hamburguesa.contains(e.target)) {
+                menu.classList.remove('menu-visible');
+            }
+        });
+    </script>
 </body>
 </html>

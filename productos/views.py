@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import ProductoForm
 from django.conf import settings
-import firebase_admin
-from firebase_admin import db, credentials
-from firebase_admin import auth
+import firebase_admin # type: ignore
+from firebase_admin import db, credentials # type: ignore
+from firebase_admin import auth # type: ignore
 import os
 from .forms import LoginForm
-import requests
+import requests # type: ignore
 from django.contrib import messages
 from .decoradores import login_requerido
 import json

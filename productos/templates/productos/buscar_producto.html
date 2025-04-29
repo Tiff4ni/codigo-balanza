@@ -1,13 +1,16 @@
 {% extends 'productos/menu.html' %}
 {% load static %}
 
+{% block title %}Buscar Producto{% endblock %}
+
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/formularios.css' %}">
-<h1>Buscar Producto</h1>
 
-<form method="GET">
+<h1 class="desktop-title">Buscar Producto</h1> <!-- <== ESTE es el título que se verá en PC -->
+
+<form method="GET" class="form-producto">
     <input type="text" name="query" placeholder="Buscar por nombre o marca" value="{{ query }}">
-    <button type="submit">Buscar</button>
+    <button type="submit" class="btn-guardar">Buscar</button>
 </form>
 
 {% if resultados %}
@@ -28,7 +31,7 @@
         </li>
         {% endfor %}
     </ul>
-{% elif nombre or marca %}
+{% elif query %}
     <p>No se encontraron productos.</p>
 {% endif %}
 {% endblock %}
